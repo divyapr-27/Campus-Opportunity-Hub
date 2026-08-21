@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}Campus Opportunity Hub{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">ONE PLACE FOR STUDENT OPPORTUNITIES</p>
+        <h1>Find your next opportunity.</h1>
+        <p class="hero-text">
+            Discover internships, hackathons, scholarships, workshops and
+            placement opportunities without searching through dozens of websites.
+        </p>
+        <a class="button" href="{{ url_for('opportunities') }}">Explore Opportunities</a>
+    </div>
+</section>
+
+<section class="section-heading">
+    <div>
+        <p class="eyebrow">LATEST</p>
+        <h2>Featured opportunities</h2>
+    </div>
+    <a href="{{ url_for('opportunities') }}">View all →</a>
+</section>
+
+<div class="grid">
+    {% for opportunity in opportunities %}
+        <article class="card">
+            <span class="tag">{{ opportunity["type"] }}</span>
+            <h3>{{ opportunity["title"] }}</h3>
+            <p class="organization">{{ opportunity["organization"] }}</p>
+            <p>{{ opportunity["description"] }}</p>
+            <p class="deadline">Deadline: {{ opportunity["deadline"] }}</p>
+            <a class="text-link" href="{{ url_for('opportunity_detail', opportunity_id=opportunity['id']) }}">View details →</a>
+        </article>
+    {% else %}
+        <p>No opportunities yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

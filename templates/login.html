@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <h1>Welcome back</h1>
+    <p>Log in to save opportunities and track applications.</p>
+    <form method="post">
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button class="button" type="submit">Login</button>
+    </form>
+    <p class="muted">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+</div>
+{% endblock %}

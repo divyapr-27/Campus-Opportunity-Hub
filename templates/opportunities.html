@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block title %}Opportunities{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <p class="eyebrow">DISCOVER</p>
+    <h1>Opportunities</h1>
+    <p>Search and filter opportunities that match your goals.</p>
+</div>
+
+<form class="search-bar" method="get">
+    <input type="search" name="search" placeholder="Search title, organization or keyword..." value="{{ search }}">
+    <select name="type">
+        <option value="">All types</option>
+        <option value="Internship" {% if type_filter == "Internship" %}selected{% endif %}>Internship</option>
+        <option value="Hackathon" {% if type_filter == "Hackathon" %}selected{% endif %}>Hackathon</option>
+        <option value="Scholarship" {% if type_filter == "Scholarship" %}selected{% endif %}>Scholarship</option>
+        <option value="Workshop" {% if type_filter == "Workshop" %}selected{% endif %}>Workshop</option>
+        <option value="Placement" {% if type_filter == "Placement" %}selected{% endif %}>Placement</option>
+    </select>
+    <button class="button" type="submit">Search</button>
+</form>
+
+<div class="grid">
+    {% for opportunity in opportunities %}
+        <article class="card">
+            <span class="tag">{{ opportunity["type"] }}</span>
+            <h3>{{ opportunity["title"] }}</h3>
+            <p class="organization">{{ opportunity["organization"] }}</p>
+            <p>{{ opportunity["description"] }}</p>
+            <p class="deadline">Deadline: {{ opportunity["deadline"] }}</p>
+            <a class="text-link" href="{{ url_for('opportunity_detail', opportunity_id=opportunity['id']) }}">View details →</a>
+        </article>
+    {% else %}
+        <div class="empty">
+            <h3>No results found</h3>
+            <p>Try a different search term or category.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

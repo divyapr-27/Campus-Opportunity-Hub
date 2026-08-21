@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block title %}Add Opportunity{% endblock %}
+
+{% block content %}
+<div class="form-card wide">
+    <h1>Add an opportunity</h1>
+    <p>Share a useful opportunity with other students.</p>
+
+    <form method="post">
+        <label>Title</label>
+        <input type="text" name="title" required>
+
+        <label>Organization</label>
+        <input type="text" name="organization" required>
+
+        <label>Type</label>
+        <select name="type" required>
+            <option value="">Choose a type</option>
+            <option>Internship</option>
+            <option>Hackathon</option>
+            <option>Scholarship</option>
+            <option>Workshop</option>
+            <option>Placement</option>
+        </select>
+
+        <label>Description</label>
+        <textarea name="description" rows="5" required></textarea>
+
+        <label>Application link</label>
+        <input type="url" name="link" placeholder="https://..." required>
+
+        <label>Deadline</label>
+        <input type="date" name="deadline" required>
+
+        <button class="button" type="submit">Add Opportunity</button>
+    </form>
+</div>
+{% endblock %}

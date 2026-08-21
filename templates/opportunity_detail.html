@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block title %}{{ opportunity["title"] }}{% endblock %}
+
+{% block content %}
+<div class="detail-card">
+    <span class="tag">{{ opportunity["type"] }}</span>
+    <h1>{{ opportunity["title"] }}</h1>
+    <p class="organization large">{{ opportunity["organization"] }}</p>
+
+    <div class="detail-grid">
+        <div>
+            <h3>About this opportunity</h3>
+            <p>{{ opportunity["description"] }}</p>
+        </div>
+        <div class="side-box">
+            <strong>Application deadline</strong>
+            <span>{{ opportunity["deadline"] }}</span>
+            <a class="button" href="{{ opportunity['link'] }}" target="_blank" rel="noopener">Open Opportunity</a>
+        </div>
+    </div>
+
+    {% if session.get("user_id") %}
+        <div class="actions">
+            <form method="post" action="{{ url_for('save_opportunity', opportunity_id=opportunity['id']) }}">
+                <button class="button secondary" type="submit">
+                    {% if saved %}Remove from Saved{% else %}♡ Save Opportunity{% endif %}
+                </button>
+            </form>
+
+            <form method="post" action="{{ url_for('apply', opportunity_id=opportunity['id']) }}">
+                <select name="status">
+                    <option value="Applied" {% if application and application["status"] == "Applied" %}selected{% endif %}>Applied</option>
+                    <option value="Shortlisted" {% if application and application["status"] == "Shortlisted" %}selected{% endif %}>Shortlisted</option>
+                    <option value="Interview" {% if application and application["status"] == "Interview" %}selected{% endif %}>Interview</option>
+                    <option value="Selected" {% if application and application["status"] == "Selected" %}selected{% endif %}>Selected</option>
+                    <option value="Rejected" {% if application and application["status"] == "Rejected" %}selected{% endif %}>Rejected</option>
+                </select>
+                <button class="button" type="submit">Update Application</button>
+            </form>
+        </div>
+    {% else %}
+        <p class="notice"><a href="{{ url_for('login') }}">Log in</a> to save this opportunity and track your application.</p>
+    {% endif %}
+</div>
+{% endblock %}

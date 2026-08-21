@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Saved Opportunities{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <p class="eyebrow">YOUR LIST</p>
+    <h1>Saved Opportunities</h1>
+</div>
+
+<div class="grid">
+    {% for opportunity in opportunities %}
+        <article class="card">
+            <span class="tag">{{ opportunity["type"] }}</span>
+            <h3>{{ opportunity["title"] }}</h3>
+            <p class="organization">{{ opportunity["organization"] }}</p>
+            <p class="deadline">Deadline: {{ opportunity["deadline"] }}</p>
+            <a class="text-link" href="{{ url_for('opportunity_detail', opportunity_id=opportunity['id']) }}">View details →</a>
+        </article>
+    {% else %}
+        <div class="empty">
+            <h3>Your saved list is empty.</h3>
+            <p>Explore opportunities and save the ones you want to revisit.</p>
+            <a class="button" href="{{ url_for('opportunities') }}">Explore</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

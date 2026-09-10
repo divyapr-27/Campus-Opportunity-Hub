@@ -91,3 +91,21 @@ The Flask server will show a local address in the terminal. Open that address in
 ## AI Disclosure
 
 I used AI tools during the development of this project for learning, explanations, brainstorming, debugging, and help understanding parts of the implementation. I reviewed and tested the code and made changes while developing the project. The final project and its implementation are my responsibility.
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+
+![Home Page](Screenshot%202026-09-10%20184944.png)
+
+### 🔎 Opportunities
+
+![Opportunities](Screenshot%202026-09-10%20185105.png)
+
+### 📝 Registration
+
+![Registration](Screenshot%202026-09-10%20185032.png)
+
+### ➕ Add Opportunity
+
+![Add Opportunity](Screenshot%202026-09-10%20185127.png)
